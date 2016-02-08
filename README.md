@@ -13,6 +13,21 @@ Based on publish-to-ftp and extending publish-to and basic-credentials this Jenk
 
 # Configure Credentials
 The first step to configuring the pubish-over Onedrive plugin is to connect your Onedrive account. To do so, navigate to **Jenkins > Credentials**
+Go to **Global Credentials** and **Add Credentials** of kind OneDrive API token.
+Enter the Client ID and Client Secret into the fields and click authorize URL.
+Text will appear under the Client Secret field with a link to generate the API token.
+After allowing Jenkins access to OneDrive, the link will have the API token from after **code=** to the **ampersand**.
+The API token can then be entered into the API token field on the Jenkins page.
 
+# Set up directory
+Under Jenkins configuration find the OneDrive configuration.
+Name the configuration and specify the remote OneDrive directory (e.g. **/Jenkins**).
+Click **Test Configuration** to ensure the OneDrive account can be authenticated and save the changes.
 
-
+# Set up the build task
+Go to the configuration view of the job.
+Add the post build task **Send build artifacts over OneDrive**.
+Under the name drop down menu select the name of the configuration you wish to use
+    - This is the name you selected in the **Set up directory** step
+Under Transfers specify the artifacts to upload to OneDrive.
+Save the configuration and you're done!
