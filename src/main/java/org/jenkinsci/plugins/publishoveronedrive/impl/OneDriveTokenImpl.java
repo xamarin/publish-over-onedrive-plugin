@@ -97,9 +97,16 @@ public class OneDriveTokenImpl extends BaseStandardCredentials implements OneDri
                 Config.CLIENT_SECRET = clientSecret;
                 Config.CLIENT_ID = clientId;
 
+                String configScope = "";
+                for (String config : Config.SCOPES) {
+                    configScope += config + " ";
+                }
+                configScope = configScope.trim();
+
                 String queryString = new FormBuilder()
                         .appendQueryParameter("client_id", clientId)
-                        .appendQueryParameter("scope", String.join(" ", Config.SCOPES))
+                        //.appendQueryParameter("scope", String.join(" ", Config.SCOPES))
+                        .appendQueryParameter("scope", configScope)
                         .appendQueryParameter("response_type", "code")
                         .appendQueryParameter("redirect_uri", Config.REDIRECT_URI)
                         .build();
